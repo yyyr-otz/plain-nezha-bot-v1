@@ -76,7 +76,7 @@ ${md.inlineCode("/help")} - ${i18next.t("Print help messages")}
 
         const sid = parseInt(sidStr || '');
         if (isNaN(sid))
-            return { text: md.build(md`The server id is not valid.`) };
+            return { text: md.build(md`${i18next.t("The server id is not valid.")}`) };
 
         return this.generateServerResponse(sid);
     }
@@ -157,7 +157,7 @@ ${md.inlineCode("/help")} - ${i18next.t("Print help messages")}
         if (matchedService) {
             matchedServiceName = matchedService.name;
         } else {
-            return { text: md.build(md`${i18next.t("No service matches")}`) };
+            return { text: md.build(md`${i18next.t("No service matches.")}`) };
         }
 
         const response: telegram.CommonResponse = {
@@ -207,7 +207,7 @@ ${i18next.t("Next Update Time")}: ${new Date(service.next_update[sid]).toLocaleS
         if (matchedService) {
             matchedServiceName = matchedService.service_name;
         } else {
-            return { text: md.build(md`No service matches.`) };
+            return { text: md.build(md`${i18next.t("No service matches.")}`) };
         }
 
         const avgDelay = matchedService.delay.length > 0

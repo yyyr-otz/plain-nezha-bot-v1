@@ -9,7 +9,7 @@
    "The server name is not valid.": "The server name is not valid.",
    "The service name is not valid.": "The service name is not valid.",
    "No cycle transfer data available.": "No cycle transfer data available.",
-   "No service matches": "No service matches",
+   "No service matches.": "No service matches.",
    "Cycle Start": "Cycle Start",
    "Cycle End": "Cycle End",
    "Last Updated At": "Last Updated At",

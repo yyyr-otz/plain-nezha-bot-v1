@@ -9,7 +9,7 @@
     "The server name is not valid.": "服务器名称无效。",
     "The service name is not valid.": "服务名称无效。",
     "No cycle transfer data available.": "没有周期流量数据可用。",
-    "No service matches": "没有匹配的服务",
+    "No service matches.": "没有匹配的服务。",
     "Cycle Start": "周期开始",
     "Cycle End": "周期结束",
     "Last Updated At": "更新于",
