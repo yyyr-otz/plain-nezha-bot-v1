@@ -14,7 +14,6 @@ Inspired by https://github.com/nezhahq/Nezha-Telegram-Bot-V1
 4. 在 Fork 的仓库设置创建需要的 Repository secrets：
 
   - `CLOUDFLARE_API_TOKEN`：刚刚创建的 API Token。
-  - `KV_BINDING`：KV 命名空间名称。
   - `KV_ID`：KV 命名空间 ID。
   - `NZ_BASEURL`：面板地址，例如 `https://ops.naibahq.com`。
   - `LANG`：语言，可选 `en` `zh-CN`，默认为 `en`。

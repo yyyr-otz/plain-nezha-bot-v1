@@ -29,7 +29,6 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           preCommands: |
-            sed -i 's/NZ_BOT_STORE/${{ secrets.KV_BINDING }}/g' wrangler.toml
             sed -i 's/kv_namespace_id/${{ secrets.KV_ID }}/g' wrangler.toml
           command: deploy --var NZ_BASEURL:${{ secrets.NZ_BASEURL }} LANG:${{ secrets.LANG }} ENDPOINT_PATH:${{ secrets.ENDPOINT_PATH }}
           secrets: |
