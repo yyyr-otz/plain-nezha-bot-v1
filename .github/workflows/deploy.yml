@@ -1,0 +1,49 @@
+name: Deploy
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          # Pinned due to compatibility issues on 23.2.0
+          node-version: "22"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: |
+          npm install
+
+      - name: Deploy
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          preCommands: |
+            sed -i 's/NZ_BOT_STORE/${{ secrets.KV_BINDING }}/g' wrangler.toml
+            sed -i 's/kv_namespace_id/${{ secrets.KV_ID }}/g' wrangler.toml
+          command: deploy --var NZ_BASEURL:${{ secrets.NZ_BASEURL }} LANG:${{ secrets.LANG }} ENDPOINT_PATH:${{ secrets.ENDPOINT_PATH }}
+          secrets: |
+            TELEGRAM_BOT_TOKEN
+            TELEGRAM_SECRET
+            TELEGRAM_UID
+            PASSWORD
+            NZ_USERNAME
+            NZ_PASSWORD
+          quiet: true
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_SECRET: ${{ secrets.TELEGRAM_SECRET }}
+          TELEGRAM_UID: ${{ secrets.TELEGRAM_UID }}
+          PASSWORD: ${{ secrets.PASSWORD }}
+          NZ_USERNAME: ${{ secrets.NZ_USERNAME }}
+          NZ_PASSWORD: ${{ secrets.NZ_PASSWORD }}
