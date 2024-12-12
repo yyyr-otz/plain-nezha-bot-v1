@@ -1,5 +1,5 @@
 {
-  "name": "nezha-commander",
+  "name": "plain-nezha-bot",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -15,5 +15,9 @@
     "typescript": "^5.5.2",
     "vitest": "2.1.8",
     "wrangler": "^3.60.3"
+  },
+  "dependencies": {
+    "@vlad-yakovlev/telegram-md": "^2.0.0",
+    "i18next": "^24.1.0"
   }
 }
