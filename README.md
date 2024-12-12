@@ -9,7 +9,7 @@ Inspired by https://github.com/nezhahq/Nezha-Telegram-Bot-V1
 ### 使用 Github Actions
 
 1. Fork 本项目
-2. 在 Cloudflare Dashboard 使用模板 `Edit Cloudflare Workers` 创建一个 API Token，记录下来。
+2. 在 Cloudflare Dashboard 使用模板 `Edit Cloudflare Workers` 并指定要使用的帐号创建一个 API Token，记录下来。
 3. 创建一个 Workers KV 命名空间，保存下 ID 和 名称。
 4. 在 Fork 的仓库设置创建需要的 Repository secrets：
 
