@@ -1,6 +1,3 @@
-import i18next from 'i18next';
-import en from "../translations/en.json"
-
 export function buildUrl(path: string, data?: any): string {
     if (!data)
         return path
