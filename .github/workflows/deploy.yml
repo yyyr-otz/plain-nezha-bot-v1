@@ -13,16 +13,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - name: Set up Bun
+        uses: oven-sh/setup-bun@v1
         with:
-          # Pinned due to compatibility issues on 23.2.0
-          node-version: "22"
-          cache: "npm"
+          bun-version: "latest"
 
       - name: Install dependencies
-        run: |
-          npm install
+        run: bun install
 
       - name: Deploy
         uses: cloudflare/wrangler-action@v3

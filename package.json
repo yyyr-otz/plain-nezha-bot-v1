@@ -1,23 +1,23 @@
 {
-  "name": "plain-nezha-bot",
-  "version": "0.0.0",
-  "private": true,
-  "scripts": {
-    "deploy": "wrangler deploy",
-    "dev": "wrangler dev",
-    "start": "wrangler dev",
-    "test": "vitest",
-    "cf-typegen": "wrangler types"
-  },
-  "devDependencies": {
-    "@cloudflare/vitest-pool-workers": "^0.5.2",
-    "@cloudflare/workers-types": "^4.20241205.0",
-    "typescript": "^5.5.2",
-    "vitest": "2.1.8",
-    "wrangler": "^3.60.3"
-  },
-  "dependencies": {
-    "@vlad-yakovlev/telegram-md": "^2.0.0",
-    "i18next": "^24.1.0"
-  }
+	"name": "plain-nezha-bot",
+	"version": "0.0.0",
+	"private": true,
+	"scripts": {
+		"deploy": "wrangler deploy",
+		"dev": "wrangler dev",
+		"start": "wrangler dev",
+		"test": "vitest",
+		"cf-typegen": "wrangler types"
+	},
+	"devDependencies": {
+		"@cloudflare/vitest-pool-workers": "^0.8.4",
+		"@cloudflare/workers-types": "^4.20250321.0",
+		"typescript": "^5.8.2",
+		"vitest": "3.0.9",
+		"wrangler": "^4.4.0"
+	},
+	"dependencies": {
+		"@vlad-yakovlev/telegram-md": "^2.0.0",
+		"i18next": "^24.2.3"
+	}
 }

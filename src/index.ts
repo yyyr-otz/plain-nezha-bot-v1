@@ -1,22 +1,22 @@
-import { TelegramHandlers } from "./lib/telegram/handlers";
-import { Telegram } from "./lib/telegram/api";
-import { Update } from "./types/telegram";
-import { NezhaAPIClient } from "./lib/nezha/api";
-import { log, error } from "./lib/utils"
-import i18next from "./lib/translations"
+import { TelegramHandlers } from './lib/telegram/handlers';
+import { Telegram } from './lib/telegram/api';
+import { Update } from './types/telegram';
+import { NezhaAPIClient } from './lib/nezha/api';
+import { log, error } from './lib/utils';
+import i18next from './lib/translations';
 
 export default {
 	async fetch(request, env): Promise<Response> {
 		const telegram = new Telegram({
 			token: env.TELEGRAM_BOT_TOKEN,
-		})
+		});
 
 		const nezha = await NezhaAPIClient.init({
 			base_url: env.NZ_BASEURL,
 			username: env.NZ_USERNAME,
 			password: env.NZ_PASSWORD,
 			cache: env.NZ_BOT_STORE,
-		})
+		});
 
 		i18next.changeLanguage(env.LANG);
 
@@ -25,7 +25,7 @@ export default {
 
 		const url = new URL(request.url);
 		switch (url.pathname) {
-			case "/register": {
+			case '/register': {
 				try {
 					await basicAuth(request, env);
 				} catch (error) {
@@ -42,7 +42,7 @@ export default {
 				const webHookUrl = `https://${url.hostname}${env.ENDPOINT_PATH}`;
 				return telegram.setWebhook(webHookUrl, env.TELEGRAM_SECRET);
 			}
-			case "/unregister": {
+			case '/unregister': {
 				try {
 					await basicAuth(request, env);
 				} catch (error) {
@@ -56,7 +56,7 @@ export default {
 
 				return telegram.deleteWebhook();
 			}
-			case "/refresh": {
+			case '/refresh': {
 				try {
 					await basicAuth(request, env);
 				} catch (error) {
@@ -73,7 +73,7 @@ export default {
 			}
 			case env.ENDPOINT_PATH: {
 				if (env.TELEGRAM_SECRET && request.headers.get('X-Telegram-Bot-Api-Secret-Token') !== env.TELEGRAM_SECRET) {
-					return new Response("Unauthorized", { status: 401 });
+					return new Response('Unauthorized', { status: 401 });
 				}
 
 				const update: Update = await request.json();
@@ -96,57 +96,57 @@ export default {
 			username: env.NZ_USERNAME,
 			password: env.NZ_PASSWORD,
 			cache: env.NZ_BOT_STORE,
-		})
+		});
 
 		await refreshToken(nezha);
 	},
 } satisfies ExportedHandler<Env>;
 
 async function basicAuth(req: Request, env: Env) {
-	const authHeader = req.headers.get('Authorization')
+	const authHeader = req.headers.get('Authorization');
 	const expectedAuth = env.PASSWORD;
 
 	if (!authHeader || !authHeader.startsWith('Basic ')) {
-		throw new Error("Unauthorized");
+		throw new Error('Unauthorized');
 	}
 
-	const encodedCredentials = authHeader.split(' ')[1]
-	const decodedCredentials = atob(encodedCredentials)
-	const [_, password] = decodedCredentials.split(':')
+	const encodedCredentials = authHeader.split(' ')[1];
+	const decodedCredentials = atob(encodedCredentials);
+	const [_, password] = decodedCredentials.split(':');
 
 	const encoder = new TextEncoder();
 	if (!crypto.subtle.timingSafeEqual(encoder.encode(password), encoder.encode(expectedAuth))) {
-		throw new Error("Unauthorized");
+		throw new Error('Unauthorized');
 	}
 }
 
 function registerAllCommands(client: Telegram, handlers: TelegramHandlers) {
 	client.registerCommand({
-		command: "start",
+		command: 'start',
 		fn: handlers.startHandler,
 	});
 	client.registerCommand({
-		command: "help",
+		command: 'help',
 		fn: handlers.startHandler,
 	});
 	client.registerCommand({
-		command: "sid",
+		command: 'sid',
 		fn: handlers.sidHandler,
 	});
 	client.registerCommand({
-		command: "server",
+		command: 'server',
 		fn: handlers.serverHandler,
 	});
 	client.registerCommand({
-		command: "overview",
+		command: 'overview',
 		fn: handlers.overviewHandler,
 	});
 	client.registerCommand({
-		command: "monitor",
+		command: 'monitor',
 		fn: handlers.monitorHandler,
 	});
 	client.registerCommand({
-		command: "transfer",
+		command: 'transfer',
 		fn: handlers.transferHandler,
 	});
 
@@ -154,12 +154,12 @@ function registerAllCommands(client: Telegram, handlers: TelegramHandlers) {
 }
 
 async function refreshToken(nezha: NezhaAPIClient) {
-	log("refreshing token...");
+	log('refreshing token...');
 
 	try {
 		await nezha.refreshToken();
 	} catch (e) {
-		error("refresh failed: ", (e as Error).message);
+		error('refresh failed: ', (e as Error).message);
 	}
-	log("refresh succeeded.");
+	log('refresh succeeded.');
 }

@@ -2,9 +2,9 @@
 
 interface Env {
 	NZ_BOT_STORE: KVNamespace;
-	NZ_BASEURL: "https://www.example.com";
-	LANG: "en";
-	ENDPOINT_PATH: "/endpoint";
+	NZ_BASEURL: 'https://www.example.com';
+	LANG: 'en';
+	ENDPOINT_PATH: '/endpoint';
 	TELEGRAM_BOT_TOKEN: string;
 	TELEGRAM_SECRET: string;
 	TELEGRAM_UID: string;
