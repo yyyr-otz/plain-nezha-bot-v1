@@ -30,7 +30,7 @@ Inspired by https://github.com/nezhahq/Nezha-Telegram-Bot-V1
 
 ### 手动
 
-1. Clone 本项目，运行 `npm install` 安装依赖。
+1. Clone 本项目，运行 `bun install` 安装依赖。
 2. 用你喜欢的方式创建一个 Workers KV 命名空间，保存下 ID。
 3. 修改 `wrangler.toml`，将 `kv_namespaces` 字段改为你创建的 KV 信息。
 4. 修改 `wrangler.toml` 中的 `vars`：
@@ -48,7 +48,7 @@ Inspired by https://github.com/nezhahq/Nezha-Telegram-Bot-V1
 - `NZ_USERNAME`：面板用户名，用于初次认证及后续刷新。
 - `NZ_PASSWORD`：面板密码，用于初次认证及后续刷新。
 
-6. 输入 `npx wrangler deploy` 部署项目。
+6. 输入 `bunx wrangler deploy` 部署项目。
 
 ## 使用
 
