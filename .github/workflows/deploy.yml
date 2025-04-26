@@ -35,7 +35,7 @@ jobs:
             PASSWORD
             NZ_USERNAME
             NZ_PASSWORD
-          quiet: true
+          quiet: false
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_SECRET: ${{ secrets.TELEGRAM_SECRET }}
