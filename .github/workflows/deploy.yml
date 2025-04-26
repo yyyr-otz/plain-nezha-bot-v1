@@ -25,6 +25,7 @@ jobs:
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           preCommands: |
             sed -i 's/kv_namespace_id/${{ secrets.KV_ID }}/g' wrangler.toml
           command: deploy --var NZ_BASEURL:${{ secrets.NZ_BASEURL }} LANG:${{ secrets.LANG }} ENDPOINT_PATH:${{ secrets.ENDPOINT_PATH }}
